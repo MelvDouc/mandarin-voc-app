@@ -1,0 +1,5 @@
+.vscode
+local
+node_modules
+
+.env

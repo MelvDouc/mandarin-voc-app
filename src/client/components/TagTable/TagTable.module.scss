@@ -1,0 +1,28 @@
+.TagTable {
+  width: min(100%, 500px);
+  border-spacing: 1px;
+  margin-bottom: var(--gap2);
+
+  th,
+  td {
+    background-color: rgb(8, 8, 159);
+    color: white;
+    padding: var(--gap1);
+  }
+}
+
+.Actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--gap1);
+}
+
+.TagTableUpdateModalForm {
+  width: 100%;
+  display: flex;
+  gap: var(--gap1);
+
+  input[type="text"] {
+    flex-grow: 1;
+  }
+}

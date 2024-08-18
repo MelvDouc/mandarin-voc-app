@@ -1,0 +1,43 @@
+.Form {
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: var(--gap3);
+  gap: var(--gap3);
+  margin-bottom: var(--gap3);
+  background: blue;
+  color: white;
+
+  select {
+    $bg-clr: rgb(255, 255, 255);
+    $bs-size1: 2px;
+    $bs-size2: $bs-size1 * -1;
+    $bs-clr: darken($bg-clr, 8%);
+    $bs-blur: 0px;
+    $bs-spread: 3px;
+    padding: 0.5em;
+    background: $bg-clr;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: $bs-size1 $bs-size1 $bs-blur $bs-spread $bs-clr inset, $bs-size2 $bs-size2 $bs-blur $bs-spread $bs-clr inset;
+  }
+
+  textarea {
+    height: 250px;
+    resize: vertical;
+    font-family: inherit;
+  }
+}
+
+.FormRow {
+  display: flex;
+  gap: var(--gap1);
+
+}
+
+.FormColumn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.33em;
+}

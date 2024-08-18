@@ -1,0 +1,30 @@
+.Header {
+  padding: 1em;
+  color: white;
+  background: var(--clr-red1);
+  box-shadow: 2px 2px 16px 0px var(--clr-red2) inset;
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--gap3);
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--gap2);
+    }
+
+    .LogIn {
+      // flex-grow: 1;
+      color: inherit;
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}

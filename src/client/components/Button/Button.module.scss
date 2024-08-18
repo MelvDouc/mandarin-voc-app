@@ -1,0 +1,30 @@
+.Button {
+  all: unset;
+  color: white;
+  text-align: center;
+  padding: 0.45em 0.55em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+
+  &:active {
+    scale: 0.975;
+  }
+
+  &.Red {
+    background-color: var(--clr-red1);
+  }
+
+  &.Green {
+    background-color: rgb(0, 155, 45);
+  }
+
+  &.Blue {
+    background-color: blue;
+  }
+
+  >a {
+    text-decoration: none;
+    color: inherit;
+  }
+}

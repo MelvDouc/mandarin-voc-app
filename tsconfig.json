@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "module": "NodeNext",
+    "lib": [
+      "ES2022"
+    ],
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "baseUrl": "src",
+    "paths": {
+      "$/*": [
+        "./*"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ]
+}

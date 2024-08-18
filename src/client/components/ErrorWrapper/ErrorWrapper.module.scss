@@ -1,0 +1,9 @@
+.ErrorList {
+  margin-bottom: var(--gap2);
+  display: none;
+  flex-direction: column;
+
+  &.visible {
+    display: flex;
+  }
+}

@@ -1,0 +1,16 @@
+.ExampleList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap2);
+  padding: var(--gap2);
+  margin-block: var(--gap2);
+  background-color: rgb(255, 235, 235);
+  border-radius: 5px;
+
+  li {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+}

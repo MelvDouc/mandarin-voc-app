@@ -1,0 +1,18 @@
+.Dialog {
+  width: min(100%, 500px);
+  margin: auto;
+  padding: var(--gap2);
+  gap: var(--gap1);
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px 2px rgb(224, 223, 223);
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &::backdrop {
+    background: rgb(250, 240, 240, 0.75);
+  }
+}

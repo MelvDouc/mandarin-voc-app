@@ -1,0 +1,31 @@
+.FlashMessageList {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.Item {
+  width: 100%;
+  padding: var(--gap1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+
+  &.success {
+    background-color: green;
+  }
+
+  &.error {
+    background-color: red;
+  }
+
+  &.info {
+    background-color: gold;
+  }
+
+  span {
+    cursor: pointer;
+  }
+}

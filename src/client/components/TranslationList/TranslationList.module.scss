@@ -1,0 +1,10 @@
+.TranslationList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap1);
+  padding: var(--gap1);
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px 3px rgb(222, 222, 222);
+  background-color: rgb(255, 255, 230);
+}
