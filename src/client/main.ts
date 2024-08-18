@@ -3,5 +3,6 @@ import "$/client/main.scss";
 import auth from "$/client/state/auth.js";
 import "reactfree-jsx";
 
-await auth.init();
-document.body.appendChild(App());
+auth.init().then(() => {
+  document.body.appendChild(App());
+});
