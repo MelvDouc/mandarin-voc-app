@@ -1,0 +1,20 @@
+FROM oven/bun:1 AS base
+
+WORKDIR /app
+
+COPY --parents --exclude=node_modules **/package.json bun.lock ./
+RUN --mount=type=cache,target=/root/.bun/install/cache bun install --frozen-lockfile
+
+
+FROM base AS server
+
+WORKDIR /app/packages/server
+
+CMD ["bun", "run", "dev"]
+
+
+FROM base AS client
+
+WORKDIR /app/packages/client
+
+CMD ["bun", "run", "dev"]

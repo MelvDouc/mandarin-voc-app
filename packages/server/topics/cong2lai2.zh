@@ -1,0 +1,42 @@
+~ topic #[从来 cong2lai2]
+
+structure subject + $topic + #3[不 bù] + predicate
+
+main-trl never
+
+examples
+
+example #1[她 tā] #2[$topic] #2[不 bù] #4[喝酒 "hē jiǔ"] 。
+trl *1[She] *2[never] *3[drinks].
+
+example #1[你 nǐ] #2[父母 fùmǔ] #3[$topic] #3[不 bù] #4[打 dǎ] #5[你 nǐ] #[吗 ma] ？
+trl *3[Don't] *1[your] *2[parents] *3[ever] *4[hit] *5[you]?
+
+end examples
+
+p #[来 lai2] can be omitted in casual speech.
+
+examples
+
+example #1[我的 "wǒ de"] #2[女朋友 nǚpéngyou] #3[从 cóng] #3[不 bù] #4[给我 "gěi wǒ"] #5[打 dǎ] #6[电话 diànhuà] 。
+trl *1[My] *2[girlfriend] *3[never] *5[gives] *4[me] *6[a call].
+
+end examples
+
+p In the past tense the structure is: subject + $topic + #[没 méi](#[有 yǒu]) + v. + #[过 guo].
+
+examples
+
+example #1[很多 hěnduō] #2[中国人 zhōngguórén] #3[$topic] #3[没 méi] #4[出过 "chū guo"] #5[国 guò] 。
+trl *1[A lot of] *2[Chinese people] *4[have] *3[never] *4[been] *5[abroad].
+
+example #1[你 nǐ] #2[$topic] #2[没有 "méi yǒu"] #3[想过 "xiǎng guo"] #4[这个 "zhè ge"] #5[问题 wénti] #[吗 ma] ？
+trl *3[Have] *1[you] *2[never] *3[thought about] *4[this] *5[problem]?
+
+example #1[她 tā] #2[从来 cónglái] #2[没 méi] #3[见过 "jiàn guo"] #4[她 tā] #5[妈妈 māma] 。
+trl *1[She] *3[has] *2[never] *3[seen] *4[her] *5[mother].
+
+example #1[你们 nǐmen] #2[$topic] #2[没有 "méi yǒu"] #3[听说过 "tīngshuō guo"] #4[这个 "zhè ge"] #5[地方 dìfang] #[吗 ma] ？
+trl *3[Have] *1[you guys] *2[never] *4[heard about] *4[this] *5[place]?
+
+end examples

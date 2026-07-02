@@ -1,0 +1,27 @@
+# Git
+.git/
+.gitignore
+
+# Settings
+.vscode/
+
+# Environment variables
+.env
+.env.prod
+
+# Config
+Dockerfile
+Dockerfile.*
+
+# Build
+dist/
+
+# Local files
+local/
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Docs
+README.md

@@ -1,0 +1,10 @@
+{
+  "name": "zhml",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": "./src/mod.ts",
+  "devDependencies": {
+    "@types/node": "^26.1.0"
+  }
+}

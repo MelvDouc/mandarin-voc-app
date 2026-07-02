@@ -1,0 +1,15 @@
+{
+  "name": "mandarin-voc-app",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:compose": "docker compose -f docker-compose.dev.yml",
+    "dev:start": "bun run dev:compose up --build",
+    "dev:stop": "bun run dev:compose down"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

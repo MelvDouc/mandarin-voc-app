@@ -1,0 +1,16 @@
+~ topic #[时候 shi1hou]
+
+structure clause + #[的 de] $topic
+
+examples
+
+example #1[你不在 "ni3 bu4 zai4"] #[的 de] #2[$topic] ，#3[我 wǒ] #4[会 huì] #5[想 xiǎng] #6[你 nǐ]。
+trl *3[I] *4[will] *5[miss] *6[you] *2[when] *1[you're gone].
+
+example #1[小 xiao3] #[的 de] #2[$topic] ，#3[我 wo3] #4[不 bu4] #5[喜欢 xi3huan] #6[大米 da4mi]。
+trl *2[When] *1[I was little], *3[I] *4[didn't] *5[like] *6[rice].
+
+example #1[我 wǒ] #2[在 zài] #3[中国 zhōngguó] #[的 de] #4[$topic] ，#5[会 hui4] #6[说 shuo1] #7[中文 zhong1wen2]。
+trl *4[When] *1[I] *2[am in] *3[China], *5[I will] *6[speak] *7[Chinese].
+
+end examples

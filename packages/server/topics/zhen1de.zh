@@ -1,0 +1,16 @@
+~ topic #[真的 zhen1de]
+
+main-trl really
+
+examples
+
+example #1[我 wǒ] #2[$topic] #3[爱 ài] #4[她 tā] 。
+trl *1[I] *2[really] *3[love] *4[her].
+
+example #1[我 wǒ] #2[$topic] #3[不 bù] #4[知道 zhīdào] 。
+trl *1[I] *2[really] *3[don't] *4[know].
+
+example #1[他的 tā de] #2[音乐 yīnyuè] #3[$topic] #[很 hěn] #4[棒 bàng] 。
+trl *1[His] *2[music] *4[is] *3[really] *4[amazing].
+
+end examples

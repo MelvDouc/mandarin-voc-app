@@ -1,0 +1,38 @@
+structure A + #[比 bi] + B + adj.
+
+examples
+
+example #1[他 tā] (#5[不 bu4]) #2[比 bǐ] #3[我 wǒ] #4[高 gāo] 。
+trl *1[He]'s *5[(not)] *4[tall]er *2[than] *3[me].
+
+example #1[这个 "zhè ge"] #2[地方 dìfang] #3[比 bǐ] #4[那个 "nà ge"] #5[地方 dìfang] #6[好 hǎo] 。
+trl *1[This] *2[place] is *6[better] *3[than] *4[that] *5[place].
+
+example #1[中文 zhōngwén] #2[比 bǐ] #3[英语 yīngwén] #4[有意思 yǒuyìsi] 。
+trl *1[Chinese] is more *4[interesting] *2[than] *3[English].
+
+end examples
+
+structure A + #[跟 gen1] + B + #[一样 yi2yang4] + adj.
+
+examples
+
+example #1[你 nǐ] #2[跟 gēn] #3[他 tā] #4[一样 yíyàng] #5[聪明 cōngming] 。
+trl *1[You]'re *4[as] *5[smart] *2[as] *3[him].
+
+end examples
+
+p The negative form uses the structure: A + #[没有 "mei2 you3"] + B + adj.
+
+examples
+
+example #1[你 nǐ] #2[没有 "méi yǒu"] #3[他 tā] #4[聪明 cōngming] 。
+trl *1[You]'re *2[not as] *4[smart] *2[as] *3[him].
+
+example #1[上海 shànghǎi] #2[没有 "méi yǒu"] #3[北京 běijīng] #4[冷 lěng] 。
+trl *1[Shanghai] is *2[isn’t as] *4[cold] *2[as] *3[Beijing].
+
+example #1[这本 "zhè ben3"] #2[书 shū] #3[没有 "méi yǒu"] #4[那本 "nà ben3"] #5[书 shū] #6[有意思 yǒuyìsi] 。
+trl *1[This] *2[book] is *3[not as] *6[interesting] *3[as] *4[that] *5[book].
+
+end examples

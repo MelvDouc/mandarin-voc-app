@@ -1,0 +1,20 @@
+~ topic #[一直 yi1zhi2]
+
+structure subject + $topic + predicate
+main-trl constantly, continuously
+
+examples
+
+example #1[她 tā] #2[$topic] #3[很 hěn] #4[喜欢 xǐhuan] #5[上海 shànghǎi] 。
+trl *1[She] *4[has] *2[always] *4[liked] *5[Shanghai] *3[a lot].
+
+example #1[北京 běijīng] #2[的 de] #3[空气 kōngqì] #4[$topic] #5[很不好 hen3 "bu4 hao3"] 。
+trl *3[The air] *2[in] *1[Beijing] *4[has been] *5[bad] *4[for a while].
+
+example #1[他 tā] #2[$topic] #3[一个人 yí ge ren2] #4[住 zhù] ，#5[18岁 "shi2ba1 sui4"] #6[以后 yi3hou4]。
+trl *6[Since he was] *5[18 years old], *1[he] *4[has] *2[always] *4[lived] *3[alone].
+
+example #1[昨天 zuótiān] #2[晚上 wǎnshang] #3[从 cóng] #4[7点 "qi1 dian3"] #5[到 dào] #6[10点 "shi2 dian3"] ，#7[我 wo3] #8[$topic] #9[在做 "zai4 zuo4"] #10[作业 zuo4ye4]。
+trl *3[From] *4[7] *2[PM] *5[to] *6[10] *2[PM] *1[yesterday], *7[I] *9[was] *8[continuously] *9[doing] *10[homework].
+
+end examples
