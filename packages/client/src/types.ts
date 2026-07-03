@@ -1,7 +1,7 @@
 import {
-  type BlockElementNode,
-  type ExampleListNode,
-  type ExampleNode,
+  type BlockElementNode as ZhmlBlockElementNode,
+  type ExampleListNode as ZhmlExampleListNode,
+  type ExampleNode as ZhmlExampleNode,
   type Node as ZhmlNode
 } from "zhml";
 
@@ -16,5 +16,5 @@ export type HighlightState = {
 };
 
 export type {
-  BlockElementNode as ZhmlBlockElementNode, ExampleListNode as ZhmlExampleListNode, ExampleNode as ZhmlExampleNode, ZhmlNode
+  ZhmlBlockElementNode, ZhmlExampleListNode, ZhmlExampleNode, ZhmlNode
 };

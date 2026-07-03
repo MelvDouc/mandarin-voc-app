@@ -1,4 +1,4 @@
-import type NodeKinds from "$/nodes/NodeKind.ts";
+import type NodeKinds from "$/nodes/NodeKinds.ts";
 
 export type TextNode = {
   kind: typeof NodeKinds.Text;

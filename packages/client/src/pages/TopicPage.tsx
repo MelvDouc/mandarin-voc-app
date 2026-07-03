@@ -5,10 +5,10 @@ import type { ZhmlBlockElementNode, ZhmlExampleListNode } from "$/types.ts";
 import { useParams } from "react-router-dom";
 
 export default function TopicPage() {
-  const topic = useParams().topic as string;
-  useDocumentTitle(topic);
+  const slug = useParams().slug as string;
+  useDocumentTitle(slug);
 
-  const nodes = useApi<(ZhmlBlockElementNode | ZhmlExampleListNode)[]>(`/topics/${topic}`);
+  const nodes = useApi<(ZhmlBlockElementNode | ZhmlExampleListNode)[]>(`/topics/@/${slug}`);
 
   if (!nodes)
     return null;

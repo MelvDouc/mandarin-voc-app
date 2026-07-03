@@ -6,7 +6,7 @@
       "ES2023",
       "DOM"
     ],
-    "module": "esnext",
+    "module": "ESNext",
     "types": [
       "vite/client"
     ],

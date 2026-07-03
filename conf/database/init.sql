@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS topics (
+  slug VARCHAR(50) PRIMARY KEY,
+  zhml TEXT NOT NULL
+);

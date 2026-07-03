@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "hono": "^4.12.27",
+    "pg": "^8.22.0",
     "zhml": "workspace:*"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/pg": "^8.20.0"
   }
 }

@@ -5,10 +5,14 @@
     "packages/*"
   ],
   "scripts": {
-    "dev:compose": "docker compose -f docker-compose.dev.yml",
+    "compose": "docker compose --env-file conf/database/.env",
+    "build": "bun run compose build",
+    "start": "bun run compose up --build",
+    "stop": "bun run compose down",
+    "dev:compose": "docker compose -f docker-compose.dev.yml --env-file conf/database/.env.dev",
     "dev:start": "bun run dev:compose up --build",
     "dev:stop": "bun run dev:compose down",
-    "remove-containers": "docker container rm mando_voc_server mando_voc_client && docker image rm mando_voc_server:latest mando_voc_client:latest"
+    "remove-containers": "docker container rm mando_voc_db mando_voc_server mando_voc_client && docker image rm mando_voc_server:latest mando_voc_client:latest"
   },
   "peerDependencies": {
     "typescript": "^5"

@@ -1,7 +1,14 @@
-dist
+# Local files
 local
+*.local.ts
+
+# Build
+dist
+
+# Dependencies
 node_modules
 
+# Environment variables
 .env
 .env.*
 !.env.dev

@@ -1,11 +1,23 @@
 services:
+  db:
+    image: postgres:18-alpine
+    container_name: mando_voc_db
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    volumes:
+      - pg_data:/var/lib/postgresql
+      - ./conf/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
   server:
     image: mando_voc_server
     container_name: mando_voc_server
     build:
-      dockerfile: docker/Dockerfile
+      dockerfile: conf/docker/Dockerfile
       target: server
     restart: unless-stopped
+    depends_on:
+      - db
     env_file:
       - ./packages/server/.env
     ports:
@@ -21,7 +33,7 @@ services:
     image: mando_voc_client
     container_name: mando_voc_client
     build:
-      dockerfile: docker/Dockerfile
+      dockerfile: conf/docker/Dockerfile
       target: client
     restart: unless-stopped
     depends_on:
@@ -29,3 +41,6 @@ services:
         condition: service_healthy
     ports:
       - 5173:80
+
+volumes:
+  pg_data: {}

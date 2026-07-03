@@ -1,6 +1,6 @@
 import Lexer from "$/Lexer.ts";
 import type { BlockElementNode, ExampleNode, Node, ZhNode } from "$/nodes/Node.ts";
-import NodeKinds from "$/nodes/NodeKind.ts";
+import NodeKinds from "$/nodes/NodeKinds.ts";
 import {
   CLOSING_SQUARE_BRACKET,
   OPENING_SQUARE_BRACKET,

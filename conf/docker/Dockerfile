@@ -26,6 +26,6 @@ CMD ["bun", "start"]
 FROM nginx:stable-alpine3.23-perl AS client
 
 COPY --from=builder /app/packages/client/dist /usr/share/nginx/html
-COPY packages/client/config/nginx.conf /etc/nginx/conf.d/default.conf
+COPY conf/nginx/default.conf /etc/nginx/conf.d/default.conf
 
 CMD ["nginx", "-g", "daemon off;"]
