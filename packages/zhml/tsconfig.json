@@ -8,7 +8,7 @@
     "module": "Node20",
     "noEmit": true,
     "types": [
-      "node"
+      "bun"
     ],
     /* Strictness */
     "strict": true,
@@ -24,5 +24,8 @@
         "./src/*"
       ]
     }
-  }
+  },
+  "include": [
+    "src"
+  ]
 }

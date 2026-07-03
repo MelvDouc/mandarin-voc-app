@@ -7,7 +7,8 @@
   "scripts": {
     "dev:compose": "docker compose -f docker-compose.dev.yml",
     "dev:start": "bun run dev:compose up --build",
-    "dev:stop": "bun run dev:compose down"
+    "dev:stop": "bun run dev:compose down",
+    "remove-containers": "docker container rm mando_voc_server mando_voc_client && docker image rm mando_voc_server:latest mando_voc_client:latest"
   },
   "peerDependencies": {
     "typescript": "^5"

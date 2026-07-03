@@ -1,5 +1,3 @@
-import Parser from "./Parser.ts";
-import type { Node } from "./nodes/Node.ts";
-import NodeKind from "./nodes/NodeKind.ts";
-
-export { NodeKind, Parser, type Node };
+export { default as Parser } from "$/Parser.ts";
+export type * from "$/nodes/Node.ts";
+export { default as NodeKinds, type NodeKind } from "$/nodes/NodeKind.ts";

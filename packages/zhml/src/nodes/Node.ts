@@ -1,47 +1,41 @@
-import type NodeKind from "$/nodes/NodeKind.ts";
+import type NodeKinds from "$/nodes/NodeKind.ts";
 
-type RootNode = {
-  kind: NodeKind.Root;
-  children: Node[];
-};
-
-type TextNode = {
-  kind: NodeKind.Text;
+export type TextNode = {
+  kind: typeof NodeKinds.Text;
   value: string;
 };
 
 export type ZhNode = {
-  kind: NodeKind.Zh;
+  kind: typeof NodeKinds.Zh;
   id: number | null;
   zh: string;
   py: string;
 };
 
-type TranslatedPhraseNode = {
-  kind: NodeKind.TranslatedPhrase;
+export type TranslatedPhraseNode = {
+  kind: typeof NodeKinds.TranslatedPhrase;
   id: number;
   value: string;
 };
 
-type BlockElementNode = {
-  kind: NodeKind.BlockElement;
+export type BlockElementNode = {
+  kind: typeof NodeKinds.BlockElement;
   localName: string;
-  children: Node[];
+  children: (TextNode | ZhNode)[];
 };
 
-type ExampleListNode = {
-  kind: NodeKind.ExampleList;
+export type ExampleListNode = {
+  kind: typeof NodeKinds.ExampleList;
   children: ExampleNode[];
 };
 
 export type ExampleNode = {
-  kind: NodeKind.Example;
-  zh: Node[];
-  trl: Node[];
+  kind: typeof NodeKinds.Example;
+  zh: (TextNode | ZhNode)[];
+  trl: (TextNode | TranslatedPhraseNode)[];
 };
 
 export type Node =
-  | RootNode
   | TextNode
   | ZhNode
   | TranslatedPhraseNode

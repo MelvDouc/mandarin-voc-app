@@ -24,6 +24,7 @@ export function isNumeric(ch: string): boolean {
 
 export function isNotSpecialCharacter(ch: string): boolean {
   return ch !== DOLLAR_SIGN
+    && ch !== TILDE
     && ch !== HASHTAG
     && ch !== ASTERISK
     && ch !== OPENING_SQUARE_BRACKET

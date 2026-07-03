@@ -1,10 +1,14 @@
-import useApi from "$/hooks/useApi.ts";
-import type { Node as ZhmlNode } from "zhml";
+import HomePage from "$/pages/HomePage.tsx";
+import TopicPage from "$/pages/TopicPage.tsx";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export default function App() {
-  const data = useApi<ZhmlNode[]>("/topics/qilai");
-
   return (
-    <pre>{JSON.stringify(data, null, 4)}</pre>
+    <BrowserRouter>
+      <Routes>
+        <Route path="" element={<HomePage />} />
+        <Route path="topics/:topic" element={<TopicPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

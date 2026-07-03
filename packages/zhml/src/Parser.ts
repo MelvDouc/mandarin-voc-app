@@ -1,6 +1,6 @@
 import Lexer from "$/Lexer.ts";
-import type { ExampleNode, Node, ZhNode } from "$/nodes/Node.ts";
-import NodeKind from "$/nodes/NodeKind.ts";
+import type { BlockElementNode, ExampleNode, Node, ZhNode } from "$/nodes/Node.ts";
+import NodeKinds from "$/nodes/NodeKind.ts";
 import {
   CLOSING_SQUARE_BRACKET,
   OPENING_SQUARE_BRACKET,
@@ -26,66 +26,65 @@ export default class Parser {
 
   private readonly tokens: Token[];
   private readonly vars: Record<string, ZhNode> = {};
+  private readonly lastTokenIndex: number;
   private index = 0;
 
   public constructor(input: string) {
     this.tokens = Parser.getTokens(input);
+    this.lastTokenIndex = this.tokens.length - 1;
   }
 
   public parse(): Node[] {
-    const rootNodes: Node[] = [];
-    let token: Token;
+    const nodes: Node[] = [];
+    let token = this.next();
 
-    do {
-      token = this.next();
-
+    while (token.kind !== TokenKind.EndOfInput) {
       switch (token.kind) {
         case TokenKind.Text: {
-          this.handleRootTextToken(token.value, token.pos, rootNodes);
+          this.handleRootTextToken(token.value, token.pos, nodes);
           break;
         }
         case TokenKind.VarDef: {
           this.handleVarDef();
           break;
         }
-        case TokenKind.Space:
-        case TokenKind.ZhDef:
-        case TokenKind.VarRef:
-        case TokenKind.TranslationRef:
-        case TokenKind.SquareBracketStart:
-        case TokenKind.SquareBracketEnd: {
-          throw new Error(`Unexpected token at ${token.pos}.`);
+        case TokenKind.LineBreak: {
+          break;
+        }
+        default: {
+          throw new Error(`Unexpected token kind ${token.kind} at ${token.pos}.`);
         }
       }
-    } while (token.kind !== TokenKind.EndOfInput);
 
-    return rootNodes;
+      token = this.next();
+    }
+
+    return nodes;
   }
 
   private next(): Token {
-    return this.tokens[this.index++];
+    const token = this.tokens[Math.min(this.index, this.lastTokenIndex)];
+    this.index++;
+    return token;
   }
 
   private handleRootTextToken(value: string, pos: Position, children: Node[]) {
     switch (value) {
-      case "examples": {
+      case "examples":
         children.push({
-          kind: NodeKind.ExampleList,
+          kind: NodeKinds.ExampleList,
           children: this.parseExamples()
         });
         break;
-      }
       case "example":
-      case "trl": {
+      case "trl":
         throw new Error(`Unexpected block element "${value}" at ${pos}.`);
-      }
-      default: {
+      default:
         children.push({
-          kind: NodeKind.BlockElement,
+          kind: NodeKinds.BlockElement,
           localName: value,
-          children: this.parseElementChildren()
+          children: this.parseElementChildren() as BlockElementNode["children"]
         });
-      }
     }
   }
 
@@ -99,8 +98,8 @@ export default class Parser {
     this.vars[varName] = zhNode;
   }
 
-  private parseZhNode(firstToken: Token): ZhNode {
-    firstToken = this.assertToken(firstToken, TokenKind.ZhDef);
+  private parseZhNode(token1: Token): ZhNode {
+    token1 = this.assertToken(token1, TokenKind.ZhDef);
     this.assertToken(this.next(), TokenKind.SquareBracketStart);
 
     const token2 = this.next();
@@ -108,7 +107,7 @@ export default class Parser {
     if (token2.kind === TokenKind.VarRef) {
       const node = this.vars[token2.varName];
       this.assertToken(this.next(), TokenKind.SquareBracketEnd);
-      return { ...node, id: firstToken.id };
+      return { ...node, id: token1.id };
     }
 
     const zh = this.assertToken(token2, TokenKind.Text).value;
@@ -118,8 +117,8 @@ export default class Parser {
     this.assertToken(this.next(), TokenKind.SquareBracketEnd);
 
     return {
-      kind: NodeKind.Zh,
-      id: firstToken.id,
+      kind: NodeKinds.Zh,
+      id: token1.id,
       zh,
       py
     };
@@ -174,7 +173,7 @@ export default class Parser {
         }
         case TokenKind.TranslationRef: {
           const value = this.parseTranslation();
-          children.push({ kind: NodeKind.TranslatedPhrase, id: token.id, value });
+          children.push({ kind: NodeKinds.TranslatedPhrase, id: token.id, value });
           break;
         }
         case TokenKind.SquareBracketStart: {
@@ -194,8 +193,9 @@ export default class Parser {
 
   private parseExamples(): ExampleNode[] {
     const examples: ExampleNode[] = [];
+    let run = true;
 
-    main: while (true) {
+    while (run) {
       const token = this.next();
 
       if (token.kind === TokenKind.LineBreak)
@@ -205,17 +205,18 @@ export default class Parser {
 
       switch (value) {
         case "example": {
-          const zh = this.parseElementChildren();
+          const zh = this.parseElementChildren() as ExampleNode["zh"];
           this.assertTextTokenValue(this.next(), "trl");
-          const trl = this.parseElementChildren();
+          const trl = this.parseElementChildren() as ExampleNode["trl"];
 
-          examples.push({ kind: NodeKind.Example, zh, trl });
+          examples.push({ kind: NodeKinds.Example, zh, trl });
           break;
         }
         case "end": {
           this.assertToken(this.next(), TokenKind.Space);
           this.assertTextTokenValue(this.next(), "examples");
-          break main;
+          run = false;
+          break;
         }
         default: {
           throw new Error(`Unexpected block element "${value}" at ${pos}.`);
@@ -229,12 +230,12 @@ export default class Parser {
   private addText(children: Node[], value: string): void {
     const lastChild = children.at(-1);
 
-    if (lastChild && lastChild.kind === NodeKind.Text) {
+    if (lastChild && lastChild.kind === NodeKinds.Text) {
       lastChild.value += value;
       return;
     }
 
-    children.push({ kind: NodeKind.Text, value });
+    children.push({ kind: NodeKinds.Text, value });
   }
 
   private assertToken<TK extends TokenKind>(token: Token, expectedKind: TK): TokenMap[TK] {
