@@ -3,23 +3,23 @@ import Zh from "$/components/Zh/Zh.tsx";
 import type { HighlightState, ZhmlExampleNode } from "$/types.ts";
 import { useState } from "react";
 import { NodeKinds } from "zhml";
+import cssClasses from "./ExampleList.module.scss";
 
 export default function ExampleList({ nodes }: {
   nodes: ZhmlExampleNode[];
 }) {
-
   return (
-    <ul className="examples">
+    <ul className={cssClasses.ExampleList}>
       {nodes.map(({ zh, trl }, i) => {
         const [highlightedId, setHighlightedId] = useState<number | null>(null);
         const state = { highlightedId, setHighlightedId };
 
         return (
           <li key={i}>
-            <div className="example">
+            <div className={cssClasses.Example}>
               <Example nodes={zh} state={state} />
             </div>
-            <div className="trl">
+            <div className={cssClasses.Translation}>
               <Translation nodes={trl} state={state} />
             </div>
           </li>
@@ -43,8 +43,9 @@ function Example({ nodes, state }: {
             key={i}
             zh={node.zh}
             py={node.py}
-            isHighlighted={state.highlightedId !== null && state.highlightedId === node.id}
-            setHighlighted={(highlighted) => state.setHighlightedId(highlighted ? node.id : null)}
+            id={node.id}
+            highlightedId={state.highlightedId}
+            setHighlightedId={state.setHighlightedId}
           />
         );
     }
@@ -64,8 +65,9 @@ function Translation({ nodes, state }: {
           <Trl
             key={i}
             value={node.value}
-            isHighlighted={state.highlightedId !== null && state.highlightedId === node.id}
-            setHighlighted={(highlighted) => state.setHighlightedId(highlighted ? node.id : null)}
+            id={node.id}
+            highlightedId={state.highlightedId}
+            setHighlightedId={state.setHighlightedId}
           />
         );
     }

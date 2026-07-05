@@ -1,18 +1,22 @@
-import type { Highlightable } from "$/types.ts";
 import classNames from "classnames";
 import cssClasses from "./Trl.module.scss";
 
-export default function Trl({ value, isHighlighted, setHighlighted }: { value: string; } & Highlightable) {
+export default function Trl({ value, id, highlightedId, setHighlightedId }: {
+  value: string;
+  id: number;
+  highlightedId: number | null;
+  setHighlightedId: (id: number | null) => void;
+}) {
   const className = classNames({
     [cssClasses.Trl]: true,
-    [cssClasses.highlighted]: isHighlighted
+    [cssClasses.highlighted]: highlightedId === id
   });
 
   return (
     <span
       className={className}
-      onMouseEnter={setHighlighted ? (() => setHighlighted(true)) : void 0}
-      onMouseLeave={setHighlighted ? (() => setHighlighted(false)) : void 0}
+      onMouseEnter={() => setHighlightedId(id)}
+      onMouseLeave={() => setHighlightedId(null)}
     >{value}</span>
   );
 }

@@ -1,23 +1,24 @@
-import type { Highlightable } from "$/types.ts";
 import classNames from "classnames";
 import cssClasses from "./Zh.module.scss";
 
-export default function Zh({ zh, py, isHighlighted, setHighlighted }: {
+export default function Zh({ zh, py, id, highlightedId, setHighlightedId }: {
   zh: string;
   py: string;
-} & Highlightable) {
+  id: number | null;
+  highlightedId: number | null;
+  setHighlightedId: ((id: number | null) => void) | null;
+}) {
   const className = classNames({
     [cssClasses.Zh]: true,
-    [cssClasses.highlighted]: isHighlighted
+    [cssClasses.highlighted]: highlightedId !== null && highlightedId === id
   });
 
+  const handleMouseEnter = (id === null || setHighlightedId === null) ? void 0 : (() => setHighlightedId(id));
+  const handleMouseLeave = (id === null || setHighlightedId === null) ? void 0 : (() => setHighlightedId(null));
+
   return (
-    <ruby
-      className={className}
-      onMouseEnter={setHighlighted ? (() => setHighlighted(true)) : void 0}
-      onMouseLeave={setHighlighted ? (() => setHighlighted(false)) : void 0}
-    >
-      {zh}<rt>{py}</rt>
+    <ruby className={className} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      {zh}<rp>{"("}</rp><rt>{py}</rt><rp>{")"}</rp>
     </ruby>
   );
 }

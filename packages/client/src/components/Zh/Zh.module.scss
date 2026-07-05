@@ -1,5 +1,25 @@
 .Zh {
+  ruby-position: over;
+  ruby-align: center;
+  border-radius: 4px;
+  padding: 0 4px;
+  transition: background-color 0.15s ease-in-out;
+  cursor: pointer;
+
   &.highlighted {
-    color: blue;
+    background-color: var(--highlight-bg);
+    color: #000;
+
+    rt {
+      color: inherit;
+    }
+  }
+
+  rt {
+    font-size: 0.75rem;
+    color: var(--text-pinyin);
+    letter-spacing: 0.05em;
+    padding-bottom: 0.1rem;
+    user-select: none;
   }
 }

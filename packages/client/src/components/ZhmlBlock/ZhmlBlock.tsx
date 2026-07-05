@@ -1,6 +1,7 @@
 import Zh from "$/components/Zh/Zh.tsx";
 import type { ZhmlBlockElementNode } from "$/types.ts";
 import { NodeKinds } from "zhml";
+import cssClasses from "./ZhmlBlock.module.scss";
 
 export default function ZhmlBlock({ node }: {
   node: ZhmlBlockElementNode;
@@ -14,7 +15,7 @@ export default function ZhmlBlock({ node }: {
       );
     default:
       return (
-        <div className={node.localName}>
+        <div className={cssClasses[node.localName]}>
           <Children nodes={node.children} />
         </div>
       );
@@ -34,8 +35,9 @@ function Children({ nodes }: {
             key={i}
             zh={node.zh}
             py={node.py}
-            isHighlighted={false}
-            setHighlighted={null}
+            id={node.id}
+            highlightedId={null}
+            setHighlightedId={null}
           />
         );
     }

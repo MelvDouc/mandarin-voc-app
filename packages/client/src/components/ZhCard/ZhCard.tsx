@@ -2,12 +2,13 @@ import ExampleList from "$/components/ExampleList/ExampleList.tsx";
 import ZhmlBlock from "$/components/ZhmlBlock/ZhmlBlock.tsx";
 import type { ZhmlBlockElementNode, ZhmlExampleListNode } from "$/types.ts";
 import { NodeKinds } from "zhml";
+import cssClasses from "./ZhCard.module.scss";
 
 export default function ZhCard({ nodes }: {
   nodes: (ZhmlBlockElementNode | ZhmlExampleListNode)[];
 }) {
   return (
-    <>
+    <div className={cssClasses.ZhCard}>
       {nodes.map((node, i) => {
         switch (node.kind) {
           case NodeKinds.BlockElement:
@@ -20,6 +21,6 @@ export default function ZhCard({ nodes }: {
             );
         }
       })}
-    </>
+    </div>
   );
 }

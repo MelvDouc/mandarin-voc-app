@@ -5,11 +5,6 @@ import {
   type Node as ZhmlNode
 } from "zhml";
 
-export type Highlightable = {
-  isHighlighted: boolean;
-  setHighlighted: ((highlighted: boolean) => void) | null;
-};
-
 export type HighlightState = {
   highlightedId: number | null;
   setHighlightedId: (id: number | null) => void;
