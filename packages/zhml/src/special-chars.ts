@@ -9,7 +9,7 @@ export const SPACE = " ";
 export const LINE_FEED = "\n";
 export const EOF = "\0";
 
-export function isNumeric(ch: string): boolean {
+export function isDigit(ch: string): boolean {
   return ch === "0"
     || ch === "1"
     || ch === "2"
@@ -22,6 +22,10 @@ export function isNumeric(ch: string): boolean {
     || ch === "9";
 }
 
+export function isVarNameCharacter(ch: string): boolean {
+  return isLetter(ch) || isDigit(ch);
+}
+
 export function isNotSpecialCharacter(ch: string): boolean {
   return ch !== DOLLAR_SIGN
     && ch !== TILDE
@@ -32,4 +36,9 @@ export function isNotSpecialCharacter(ch: string): boolean {
     && ch !== DOUBLE_QUOTE
     && ch !== SPACE
     && ch !== LINE_FEED;
+}
+
+function isLetter(ch: string): boolean {
+  const code = ch.charCodeAt(0);
+  return code >= 65 && code <= 90 || code >= 97 && code <= 122;
 }

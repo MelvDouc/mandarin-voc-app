@@ -2,35 +2,41 @@ services:
   db:
     image: postgres:18-alpine
     container_name: mando_voc_db
-    restart: no
-    ports:
-      - 5432:5432
-    volumes:
-      - pg_data:/var/lib/postgresql
-      - ./conf/database/init.sql:/docker-entrypoint-initdb.d/init.sql
     env_file:
       - conf/database/.env.dev
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 3
+    ports:
+      - 5432:5432
+    restart: no
+    volumes:
+      - pg_data:/var/lib/postgresql
+      - ./conf/database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   server:
     image: mando_voc_server
     container_name: mando_voc_server
     build:
-      context: .
       dockerfile: conf/docker/Dockerfile.dev
       target: server
-    env_file:
-      - ./packages/server/.env.dev
-    restart: no
     depends_on:
       db:
         condition: service_healthy
+    env_file:
+      - conf/database/.env.dev
+      - packages/server/.env.dev
+    healthcheck:
+      test: curl --fail http://localhost:5174/health || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
     ports:
       - 5174:5174
+    restart: no
     volumes:
       - .:/app
       - /app/node_modules
@@ -40,14 +46,14 @@ services:
     image: mando_voc_client
     container_name: mando_voc_client
     build:
-      context: .
       dockerfile: conf/docker/Dockerfile.dev
       target: client
-    restart: no
     depends_on:
-      - server
+      server:
+        condition: service_healthy
     ports:
       - 5173:5173
+    restart: no
     volumes:
       - .:/app
       - /app/node_modules

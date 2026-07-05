@@ -5,8 +5,9 @@ import {
   DOUBLE_QUOTE,
   EOF,
   HASHTAG,
+  isDigit,
   isNotSpecialCharacter,
-  isNumeric,
+  isVarNameCharacter,
   LINE_FEED,
   OPENING_SQUARE_BRACKET,
   SPACE,
@@ -38,7 +39,7 @@ export default class Lexer {
       case LINE_FEED:
         return this.lineFeedToken(pos);
       case DOLLAR_SIGN:
-        return { kind: TokenKind.VarRef, varName: this.scanText(), pos };
+        return { kind: TokenKind.VarRef, varName: this.scanWhile(isVarNameCharacter), pos };
       case TILDE:
         return { kind: TokenKind.VarDef, pos };
       case HASHTAG:
@@ -101,13 +102,13 @@ export default class Lexer {
   }
 
   private zhDefToken(pos: Position): Token {
-    const idStr = this.scanWhile(isNumeric);
+    const idStr = this.scanWhile(isDigit);
     const id = idStr === "" ? null : +idStr;
     return { kind: TokenKind.ZhDef, id, pos };
   }
 
   private translationRefToken(pos: Position): Token {
-    const idStr = this.scanWhile(isNumeric);
+    const idStr = this.scanWhile(isDigit);
     return { kind: TokenKind.TranslationRef, id: +idStr, pos };
   }
 

@@ -1,6 +1,5 @@
 import { router } from "$/routes.ts";
 import { Hono } from "hono";
-import "./database.ts";
 
 const app = new Hono();
 const port = +Bun.env.PORT;
@@ -13,6 +12,7 @@ if (Bun.env.NODE_ENV === "development") {
   }));
 }
 
+app.get("/health", (ctx) => ctx.newResponse(null, 200));
 app.route("/api/v1", router);
 
 export default {

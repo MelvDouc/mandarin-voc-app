@@ -8,7 +8,7 @@ const pool = await new Pool({
   password: Bun.env.POSTGRES_PASSWORD
 }).connect();
 
-console.log("Connected to database.");
+console.log("🔓 Connected to database.");
 
 const query = pool.query.bind(pool);
 

@@ -34,7 +34,7 @@ router.get("/topics/new", async (ctx) => {
   return ctx.json({ ok: true });
 });
 
-router.get("/topics/update/:slug", async (ctx) => {
+router.get("/topics/@/:slug/update", async (ctx) => {
   const slug = ctx.req.param("slug");
   const topic = await ctx.req.json() as Topic;
   const update = await query("UPDATE topics SET slug = $1, zhml = $2 WHERE slug = $3", [topic.slug, topic.zhml, slug]);

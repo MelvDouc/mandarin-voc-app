@@ -10,6 +10,8 @@ FROM base AS server
 
 WORKDIR /app/packages/server
 
+RUN apt update && apt install -y --no-install-recommends curl
+
 CMD ["bun", "run", "dev"]
 
 
