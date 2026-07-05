@@ -8,6 +8,13 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql
       - ./conf/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    env_file:
+      - conf/database/.env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   server:
     image: mando_voc_server
