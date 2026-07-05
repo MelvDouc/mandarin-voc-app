@@ -7,7 +7,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="" element={<HomePage />} />
-        <Route path="topics/:slug" element={<TopicPage />} />
+        <Route path="topics/@/:slug" element={<TopicPage />} />
       </Routes>
     </BrowserRouter>
   );

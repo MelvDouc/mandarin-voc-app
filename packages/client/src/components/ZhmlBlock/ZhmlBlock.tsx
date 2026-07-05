@@ -9,7 +9,7 @@ export default function ZhmlBlock({ node }: {
   switch (node.localName) {
     case "p":
       return (
-        <p>
+        <p className={cssClasses.paragraph}>
           <Children nodes={node.children} />
         </p>
       );
