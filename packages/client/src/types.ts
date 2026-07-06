@@ -6,11 +6,17 @@ import {
   type Node as ZhmlNode
 } from "zhml";
 
-export type HighlightState = {
+type HighlightState = {
   highlightedId: number | null;
   setHighlightedId: (id: number | null) => void;
 };
 
+type Topic = {
+  slug: string;
+  title: string;
+  zhml: string;
+};
+
 export type {
-  ZhmlBlockElementNode, ZhmlExampleListNode, ZhmlExampleNode, ZhmlInlineElementNode, ZhmlNode
+  HighlightState, Topic, ZhmlBlockElementNode, ZhmlExampleListNode, ZhmlExampleNode, ZhmlInlineElementNode, ZhmlNode
 };
