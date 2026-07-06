@@ -2,6 +2,7 @@ export const DOLLAR_SIGN = "$";
 export const TILDE = "~";
 export const HASHTAG = "#";
 export const ASTERISK = "*";
+export const SECTION_SIGN = "§";
 export const OPENING_SQUARE_BRACKET = "[";
 export const CLOSING_SQUARE_BRACKET = "]";
 export const DOUBLE_QUOTE = "\"";
@@ -26,11 +27,16 @@ export function isVarNameCharacter(ch: string): boolean {
   return isLetter(ch) || isDigit(ch);
 }
 
+export function isTagNameCharacter(ch: string): boolean {
+  return isLetter(ch) || isDigit(ch) || ch === "-";
+}
+
 export function isNotSpecialCharacter(ch: string): boolean {
   return ch !== DOLLAR_SIGN
     && ch !== TILDE
     && ch !== HASHTAG
     && ch !== ASTERISK
+    && ch !== SECTION_SIGN
     && ch !== OPENING_SQUARE_BRACKET
     && ch !== CLOSING_SQUARE_BRACKET
     && ch !== DOUBLE_QUOTE

@@ -7,9 +7,11 @@ import {
   HASHTAG,
   isDigit,
   isNotSpecialCharacter,
+  isTagNameCharacter,
   isVarNameCharacter,
   LINE_FEED,
   OPENING_SQUARE_BRACKET,
+  SECTION_SIGN,
   SPACE,
   TILDE
 } from "$/special-chars.ts";
@@ -36,6 +38,8 @@ export default class Lexer {
         return { kind: TokenKind.EndOfInput, pos };
       case SPACE:
         return { kind: TokenKind.Space, pos };
+      case SECTION_SIGN:
+        return { kind: TokenKind.InlineTag, localName: this.scanWhile(isTagNameCharacter), pos };
       case LINE_FEED:
         return this.lineFeedToken(pos);
       case DOLLAR_SIGN:

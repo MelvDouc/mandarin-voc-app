@@ -1,5 +1,5 @@
 import Lexer from "$/Lexer.ts";
-import type { BlockElementNode, ExampleNode, Node, ZhNode } from "$/nodes/Node.ts";
+import type { BlockElementNode, ExampleNode, InlineElementNode, Node, ZhNode } from "$/nodes/Node.ts";
 import NodeKinds from "$/nodes/NodeKinds.ts";
 import {
   CLOSING_SQUARE_BRACKET,
@@ -98,6 +98,44 @@ export default class Parser {
     this.vars[varName] = zhNode;
   }
 
+  private parseInlineElement(localName: string): InlineElementNode {
+    this.assertToken(this.next(), TokenKind.SquareBracketStart);
+    const children: InlineElementNode["children"] = [];
+    let token = this.next();
+
+    while (token.kind !== TokenKind.SquareBracketEnd) {
+      switch (token.kind) {
+        case TokenKind.Text: {
+          this.addText(children, token.value);
+          break;
+        }
+        case TokenKind.Space: {
+          this.addText(children, SPACE);
+          break;
+        }
+        case TokenKind.ZhDef: {
+          children.push(this.parseZhNode(token));
+          break;
+        }
+        case TokenKind.VarRef: {
+          children.push(this.vars[token.varName]);
+          break;
+        }
+        default: {
+          throw new Error(`Unexpected token kind ${token.kind} at ${token.pos}`);
+        }
+      }
+
+      token = this.next();
+    }
+
+    return {
+      kind: NodeKinds.InlineElement,
+      localName,
+      children
+    };
+  }
+
   private parseZhNode(token1: Token): ZhNode {
     token1 = this.assertToken(token1, TokenKind.ZhDef);
     this.assertToken(this.next(), TokenKind.SquareBracketStart);
@@ -161,6 +199,10 @@ export default class Parser {
         }
         case TokenKind.Space: {
           this.addText(children, SPACE);
+          break;
+        }
+        case TokenKind.InlineTag: {
+          children.push(this.parseInlineElement(token.localName));
           break;
         }
         case TokenKind.ZhDef: {

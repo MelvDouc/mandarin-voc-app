@@ -12,6 +12,12 @@ type SpaceToken = {
   pos: Position;
 };
 
+type InlineTagToken = {
+  kind: TokenKind.InlineTag;
+  localName: string;
+  pos: Position;
+};
+
 type LineBreakToken = {
   kind: TokenKind.LineBreak;
   pos: Position;
@@ -58,6 +64,7 @@ type EndOfInputToken = {
 export type Token =
   | TextToken
   | SpaceToken
+  | InlineTagToken
   | LineBreakToken
   | ZhDefToken
   | VarDefToken
@@ -70,6 +77,7 @@ export type Token =
 export interface TokenMap {
   [TokenKind.Text]: TextToken;
   [TokenKind.Space]: SpaceToken;
+  [TokenKind.InlineTag]: InlineTagToken;
   [TokenKind.LineBreak]: LineBreakToken;
   [TokenKind.ZhDef]: ZhDefToken;
   [TokenKind.VarDef]: VarDefToken;

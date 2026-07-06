@@ -1,6 +1,7 @@
 const enum TokenKind {
   Text,
   Space,
+  InlineTag,
   LineBreak,
   ZhDef,
   VarDef,

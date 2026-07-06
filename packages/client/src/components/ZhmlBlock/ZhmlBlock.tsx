@@ -1,5 +1,6 @@
 import Zh from "$/components/Zh/Zh.tsx";
 import type { ZhmlBlockElementNode } from "$/types.ts";
+import React from "react";
 import { NodeKinds } from "zhml";
 import cssClasses from "./ZhmlBlock.module.scss";
 
@@ -40,6 +41,8 @@ function Children({ nodes }: {
             setHighlightedId={null}
           />
         );
+      case NodeKinds.InlineElement:
+        return React.createElement(node.localName, { key: i }, <Children nodes={node.children} />);
     }
   });
 }

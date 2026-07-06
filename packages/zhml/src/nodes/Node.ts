@@ -21,6 +21,12 @@ export type TranslatedPhraseNode = {
 export type BlockElementNode = {
   kind: typeof NodeKinds.BlockElement;
   localName: string;
+  children: (TextNode | ZhNode | InlineElementNode)[];
+};
+
+export type InlineElementNode = {
+  kind: typeof NodeKinds.InlineElement;
+  localName: string;
   children: (TextNode | ZhNode)[];
 };
 
@@ -40,5 +46,6 @@ export type Node =
   | ZhNode
   | TranslatedPhraseNode
   | BlockElementNode
+  | InlineElementNode
   | ExampleListNode
   | ExampleNode;
