@@ -8,7 +8,7 @@
     "module": "Node20",
     "noEmit": true,
     "types": [
-      "bun"
+      "node"
     ],
     /* Strictness */
     "strict": true,
@@ -19,6 +19,7 @@
     "noFallthroughCasesInSwitch": true,
     /* Imports */
     "allowImportingTsExtensions": true,
+    "ignoreDeprecations": "6.0", /* Tsup@8.5.1 for some reason appears to think this file contains a "baseUrl" property, which causes the DTS phase to fail. */
     "paths": {
       "$/*": [
         "./src/*"

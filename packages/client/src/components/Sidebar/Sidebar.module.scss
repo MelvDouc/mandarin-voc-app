@@ -1,0 +1,22 @@
+.Sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  gap: 1em;
+  color: white;
+  background-color: #201556;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: #ae1421;
+    }
+  }
+}

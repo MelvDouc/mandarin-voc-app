@@ -1,20 +1,15 @@
 {
   "name": "mandarin-voc-app",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "packageManager": "pnpm@11.10.0",
   "scripts": {
     "compose": "docker compose --env-file conf/database/.env",
-    "build": "bun run compose build",
-    "start": "bun run compose up --build",
-    "stop": "bun run compose down",
-    "dev:compose": "docker compose -f docker-compose.dev.yml --env-file conf/database/.env.dev",
-    "dev:start": "bun run dev:compose up --build",
-    "dev:stop": "bun run dev:compose down",
-    "remove-containers": "docker container rm mando_voc_db mando_voc_server mando_voc_client && docker image rm mando_voc_server:latest mando_voc_client:latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
+    "build": "pnpm run compose build",
+    "start": "pnpm run compose up --build",
+    "stop": "docker compose down",
+    "dev:compose": "docker compose -f docker-compose.dev.yaml --env-file conf/database/.env.dev",
+    "dev:start": "pnpm run dev:compose up --build",
+    "remove-containers": "docker container rm mando_voc_db mando_voc_server mando_voc_client && docker image rm mando_voc_server:latest mando_voc_client:latest",
+    "fix-perms": "find -type d -name node_modules -prune -exec sudo chown $USER:$USER {} \\;"
   }
 }

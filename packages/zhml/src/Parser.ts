@@ -1,6 +1,13 @@
 import Lexer from "$/Lexer.ts";
-import type { BlockElementNode, ExampleNode, InlineElementNode, Node, ZhNode } from "$/nodes/Node.ts";
+import type {
+  BlockElementNode,
+  ExampleNode,
+  InlineElementNode,
+  Node,
+  ZhNode
+} from "$/nodes/Node.ts";
 import NodeKinds from "$/nodes/NodeKinds.ts";
+import { numericToDiacritics } from "$/pinyin.ts";
 import {
   CLOSING_SQUARE_BRACKET,
   OPENING_SQUARE_BRACKET,
@@ -158,7 +165,7 @@ export default class Parser {
       kind: NodeKinds.Zh,
       id: token1.id,
       zh,
-      py
+      py: numericToDiacritics(py)
     };
   }
 

@@ -8,7 +8,7 @@
     "module": "Node20",
     "noEmit": true,
     "types": [
-      "bun"
+      "node"
     ],
     /* Strictness */
     "strict": true,

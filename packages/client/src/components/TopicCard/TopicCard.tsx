@@ -2,9 +2,9 @@ import ExampleList from "$/components/ExampleList/ExampleList.tsx";
 import ZhmlBlock from "$/components/ZhmlBlock/ZhmlBlock.tsx";
 import type { ZhmlBlockElementNode, ZhmlExampleListNode } from "$/types.ts";
 import { NodeKinds } from "zhml";
-import cssClasses from "./ZhCard.module.scss";
+import cssClasses from "./TopicCard.module.scss";
 
-export default function ZhCard({ nodes }: {
+export default function TopicCard({ nodes }: {
   nodes: (ZhmlBlockElementNode | ZhmlExampleListNode)[];
 }) {
   return (

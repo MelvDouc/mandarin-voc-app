@@ -4,7 +4,7 @@ My personal app to study Mandarin Chinese.
 
 ## Stack
 
-- JS runtime: Bun with workspaces
+- JS runtime: PNPM
 - Virtualization: Docker Compose
 - Database: PostgreSQL
 - Server: Hono + TypeScript

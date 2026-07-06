@@ -4,15 +4,20 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "tsx --watch src/index.ts",
+    "build": "tsup src/index.ts --outDir dist --format esm --platform node --minify"
   },
   "dependencies": {
+    "@hono/node-server": "^2.0.8",
     "hono": "^4.12.27",
     "pg": "^8.22.0",
     "zhml": "workspace:*"
   },
   "devDependencies": {
-    "@types/bun": "latest",
-    "@types/pg": "^8.20.0"
+    "@types/node": "^24.13.2",
+    "@types/pg": "^8.20.0",
+    "tsup": "^8.5.1",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3"
   }
 }

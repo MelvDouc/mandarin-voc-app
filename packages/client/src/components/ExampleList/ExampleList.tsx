@@ -10,22 +10,27 @@ export default function ExampleList({ nodes }: {
 }) {
   return (
     <ul className={cssClasses.ExampleList}>
-      {nodes.map(({ zh, trl }, i) => {
-        const [highlightedId, setHighlightedId] = useState<number | null>(null);
-        const state = { highlightedId, setHighlightedId };
-
-        return (
-          <li key={i}>
-            <div className={cssClasses.Example}>
-              <Example nodes={zh} state={state} />
-            </div>
-            <div className={cssClasses.Translation}>
-              <Translation nodes={trl} state={state} />
-            </div>
-          </li>
-        );
-      })}
+      {nodes.map(({ zh, trl }, i) => (
+        <ExampleListItem key={i} zh={zh} trl={trl} />
+      ))}
     </ul>
+  );
+}
+
+function ExampleListItem({ zh, trl }: Pick<ZhmlExampleNode, "zh" | "trl">
+) {
+  const [highlightedId, setHighlightedId] = useState<number | null>(null);
+  const state = { highlightedId, setHighlightedId };
+
+  return (
+    <li>
+      <div className={cssClasses.Example}>
+        <Example nodes={zh} state={state} />
+      </div>
+      <div className={cssClasses.Translation}>
+        <Translation nodes={trl} state={state} />
+      </div>
+    </li>
   );
 }
 

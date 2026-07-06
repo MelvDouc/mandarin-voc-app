@@ -1,10 +1,11 @@
 import { router } from "$/routes.ts";
+import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 
 const app = new Hono();
-const port = +Bun.env.PORT;
+const port = +process.env.PORT;
 
-if (Bun.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development") {
   const { cors } = await import("hono/cors");
   app.use("*", cors({
     origin: "http://localhost:5173",
@@ -15,7 +16,7 @@ if (Bun.env.NODE_ENV === "development") {
 app.get("/health", (ctx) => ctx.newResponse(null, 200));
 app.route("/api/v1", router);
 
-export default {
-  fetch: app.fetch,
-  port
-};
+(() => {
+  console.log(`App running at http://localhost:${port}`);
+  serve({ fetch: app.fetch, port: port });
+})();

@@ -1,4 +1,4 @@
-import ZhCard from "$/components/ZhCard/ZhCard";
+import TopicCard from "$/components/TopicCard/TopicCard";
 import useApi from "$/hooks/useApi.ts";
 import useDocumentTitle from "$/hooks/useDocumentTitle.ts";
 import type { Topic, ZhmlBlockElementNode, ZhmlExampleListNode } from "$/types.ts";
@@ -6,9 +6,8 @@ import { useParams } from "react-router-dom";
 
 export default function TopicPage() {
   const slug = useParams().slug as string;
-  useDocumentTitle(slug);
-
   const data = useApi<ApiTopic>(`/topics/@/${slug}`);
+  useDocumentTitle(data?.title);
 
   if (!data)
     return null;
@@ -16,7 +15,7 @@ export default function TopicPage() {
   return (
     <>
       <h1>{data.title}</h1>
-      <ZhCard nodes={data.nodes} />
+      <TopicCard nodes={data.nodes} />
     </>
   );
 }

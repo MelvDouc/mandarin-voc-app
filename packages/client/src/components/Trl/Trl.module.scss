@@ -1,12 +1,8 @@
 .Trl {
-  display: inline-block;
-  border-radius: 4px;
-  padding: 0 2px;
-  transition: background-color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
   cursor: pointer;
 
   &.highlighted {
-    background-color: var(--highlight-bg);
-  color: #000;
+    color: var(--highlight-bg);
   }
 }

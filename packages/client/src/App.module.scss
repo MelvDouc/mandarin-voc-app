@@ -1,0 +1,12 @@
+.App {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+
+  main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+  }
+}
