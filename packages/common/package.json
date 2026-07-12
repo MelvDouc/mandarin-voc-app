@@ -1,0 +1,6 @@
+{
+  "name": "common-types",
+  "private": true,
+  "exports": "./mod.ts",
+  "type": "module"
+}

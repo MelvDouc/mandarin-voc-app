@@ -1,4 +1,6 @@
 import { query } from "$/database.ts";
+import topicModel from "$/models/topic.model.ts";
+import { type Topic } from "common-types";
 import { Hono } from "hono";
 import { Parser, type Node as ZhmlNode } from "zhml";
 
@@ -12,58 +14,45 @@ router.get("/topics", async (ctx) => {
   return ctx.json(rows);
 });
 
+router.post("/topics", async (ctx) => {
+  const data = await ctx.req.json();
+  return ctx.json(await topicModel.add(data));
+});
+
 router.get("/topics/@/:slug", async (ctx) => {
   const slug = ctx.req.param("slug");
 
   if (cache.has(slug)) {
-    const nodes = cache.get(slug) as CachedTopic;
-    return ctx.json(nodes);
+    const topic = cache.get(slug) as CachedTopic;
+    return ctx.json([topic, null]);
   }
 
-  const { rows } = await query<Topic>("SELECT * FROM topics WHERE slug = $1", [slug]);
+  const [topic, exception] = await topicModel.get(slug);
 
-  if (rows.length === 0)
-    return ctx.json(null);
+  if (exception)
+    return ctx.json([null, exception]);
 
-  const nodes = new Parser(rows[0].zhml).parse();
-  const topic = { slug, title: rows[0].title, nodes };
-  cache.set(slug, topic);
+  const nodes = new Parser(topic.zhml).parse();
+  const cachedTopic = { slug, title: topic.title, nodes };
+  cache.set(slug, cachedTopic);
 
   ctx.header("Cache-Control", "public, max-age=60");
-  return ctx.json(topic);
+  return ctx.json([cachedTopic, null]);
 });
 
-router.get("/topics/@/:slug/update", async (ctx) => {
+router.patch("/topics/@/:slug", async (ctx) => {
   const slug = ctx.req.param("slug");
-  const topic = await ctx.req.json() as Topic;
-  const update = await query(`
-    UPDATE topics
-    SET slug = $1, title = $2, zhml = $3
-    WHERE slug = $4
-  `, [topic.slug, topic.title, topic.zhml, slug]);
-  cache.delete(slug);
-  return ctx.json({ ok: true });
+  const data = await ctx.req.json();
+  return ctx.json(await topicModel.update(slug, data));
 });
 
-router.get("/topics/new", async (ctx) => {
-  const topic = await ctx.req.json() as Topic;
-  const insert = await query(
-    "INSERT INTO topics (slug, title, zhml) VALUES ($1, $2, $3)",
-    [topic.slug, topic.title, topic.zhml]
-  );
-  return ctx.json({ ok: true });
+router.delete("/topics/@/:slug", async (ctx) => {
+  const slug = ctx.req.param("slug");
+  return ctx.json(await topicModel.delete(slug));
 });
 
 export { router };
 
-type Topic = {
-  slug: string;
-  title: string;
-  zhml: string;
-};
-
-type CachedTopic = {
-  slug: string;
-  title: string;
+type CachedTopic = Pick<Topic, "slug" | "title"> & {
   nodes: ZhmlNode[];
 };

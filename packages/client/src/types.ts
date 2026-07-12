@@ -11,12 +11,6 @@ type HighlightState = {
   setHighlightedId: (id: number | null) => void;
 };
 
-type Topic = {
-  slug: string;
-  title: string;
-  zhml: string;
-};
-
 export type {
-  HighlightState, Topic, ZhmlBlockElementNode, ZhmlExampleListNode, ZhmlExampleNode, ZhmlInlineElementNode, ZhmlNode
+  HighlightState, ZhmlBlockElementNode, ZhmlExampleListNode, ZhmlExampleNode, ZhmlInlineElementNode, ZhmlNode
 };

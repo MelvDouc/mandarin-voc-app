@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import cssClasses from "./TopicList.module.scss";
 
 export default function TopicList() {
-  const data = useApi<{ slug: string; title: string; }[]>("/topics");
+  const [data] = useApi<{ slug: string; title: string; }[]>("/topics");
 
   if (!data)
     return null;

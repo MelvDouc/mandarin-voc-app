@@ -1,6 +1,6 @@
 import { Pool } from "pg";
 
-const pool = await new Pool({
+const poolClient = await new Pool({
   host: "db",
   database: process.env.POSTGRES_DB,
   port: 5432,
@@ -10,7 +10,7 @@ const pool = await new Pool({
 
 console.log("🔓 Connected to database.");
 
-const query = pool.query.bind(pool);
+const query = poolClient.query.bind(poolClient);
 
 export {
   query

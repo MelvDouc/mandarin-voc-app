@@ -9,5 +9,3 @@ declare global {
     }
   }
 }
-
-export type Result<T, E> = { ok: true; } & T | { ok: false; } & E;
